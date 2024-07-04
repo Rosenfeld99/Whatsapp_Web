@@ -1,0 +1,31 @@
+.chat-back{
+  background-image: url('/back_whatsapp.png');
+  /* background-color: #384045; */
+  /* opacity: 0.5; */
+}
+
+
+/* custom scroll */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #384045;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+
