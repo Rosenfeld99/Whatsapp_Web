@@ -20,8 +20,8 @@ const Chat = () => {
   const { data } = useContext(ChatContext)
   // console.log(data);
   return (
-    <div className=' hidden chat-back bg-dark_secoundary flex-1 xl:flex flex-col justify-between'>
-      <div className="chatInfo flex items-center justify-between h-16 bg-dark_neutral px-5 py-3">
+    <div className=' hidden chat-back bg-dark_secoundary max-h-screen flex-1 xl:flex flex-col justify-between'>
+      <div className="flex items-center justify-between h-16 bg-dark_neutral px-5 py-3">
         <span className=' flex items-center gap-3'>
           {data.user?.photoURL && <img src={data.user?.photoURL} className=' w-11 aspect-square object-cover rounded-full' alt="profile avatar" />}
           <span className='text-dark_neutral_content font-semibold text-lg'>{data.user?.displayName}</span>
@@ -29,7 +29,7 @@ const Chat = () => {
         <div className="chatIcons flex items-center gap-3">
           <FaVideo className='text-2xl text-dark_accent opacity-50' />
           <MdOutlineSearch className=" text-2xl ml-4 text-dark_accent" />
-          <Dropdown options={options} isOpen={isOpen} setIsOpen={setIsOpen}>
+          <Dropdown options={options} isOpen={isOpen} setIsOpen={setIsOpen} width={'w-40'} positionStyle={'relative'}>
             <FiMoreVertical className='text-2xl text-dark_accent' />
           </Dropdown>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 
-const Dropdown = ({ isOpen, setIsOpen, options, children }) => {
+const Dropdown = ({ isOpen, setIsOpen, options, children, width, doFunc, positionStyle }) => {
     const dropdownRef = useRef(null);
 
     const toggleDropdown = () => {
@@ -11,6 +11,7 @@ const Dropdown = ({ isOpen, setIsOpen, options, children }) => {
     const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
             setIsOpen(false);
+            doFunc && doFunc()
         }
     };
 
@@ -27,7 +28,7 @@ const Dropdown = ({ isOpen, setIsOpen, options, children }) => {
     }, [isOpen]);
 
     return (
-        <div ref={dropdownRef} className="relative inline-block text-left">
+        <div ref={dropdownRef} className={` inline-block text-left z-50 ${positionStyle}`}>
             <button
                 className={`transition-transform ${isOpen ? 'rotate-90 bg-[#323b42]' : ''} inline-flex justify-center w-full p-2 text-sm font-medium rounded-full focus:outline-none`}
                 onClick={toggleDropdown}
@@ -35,7 +36,7 @@ const Dropdown = ({ isOpen, setIsOpen, options, children }) => {
                 {children}
             </button>
             <div
-                className={`origin-top-right absolute right-0 z-50 mt-2 w-56 rounded-md bg-[#253137] shadow-md shadow-[#000000a1] ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-300 transform ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                className={`origin-top-right overflow-hidden absolute right-0 z-50 mt-2 ${width || "w-56"} rounded-md bg-[#253137] shadow-md shadow-[#000000a1] ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-300 transform ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                 style={{ display: isOpen ? 'block' : 'none' }}
             >
                 {options.map((option, index) => (
