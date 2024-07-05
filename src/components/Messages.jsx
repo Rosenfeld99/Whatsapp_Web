@@ -3,6 +3,7 @@ import { Message } from '../components'
 import { ChatContext } from '../context/ChatContext'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../firebase/firebase'
+import { FaChevronDown } from 'react-icons/fa'
 
 const Messages = () => {
   const { data } = useContext(ChatContext)
@@ -26,11 +27,17 @@ const Messages = () => {
 
   console.log(messages);
   return (
-    <div className='messages overflow-y-scroll'>
+    <div className=' h-full overflow-y-scroll relative'>
       {messages.map((m) => (
 
         <Message message={m} key={m.id} />
       ))}
+      {/* <button
+        onClick={scrollToBottom}
+        className='fixed bottom-24 mx-5 bg-dark_neutral w-12 h-12 shadow-md shadow-[#000000b0] rounded-full flex items-center justify-center'
+      >
+        <FaChevronDown className='text-2xl text-dark_accent' />
+      </button> */}
     </div>
   )
 }

@@ -23,9 +23,13 @@ export default {
         error: "#ef4444",
         error_content: "#fff",
 
-        // message
-        msg_owner : "#275c4d",
-        msg_sender : "#F0F1F1",
+        // message dark
+        msg_owner_dark: "#275c4d",
+        msg_sender_dark: "#232c33",
+
+        // message light
+        msg_owner_light: "#275c4d",
+        msg_sender_light: "#F0F1F1",
 
         // dark mode
         dark_primary: "#0e1317",
@@ -36,6 +40,21 @@ export default {
         dark_accent_content: "#fff",
         dark_neutral: "#232c33",
         dark_neutral_content: "#F0F1F1",
+      },
+      keyframes: {
+        "gradient-x": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
+      },
+      animation: {
+        "gradient-x": "gradient-x 1.5s ease infinite",
       },
     },
   },

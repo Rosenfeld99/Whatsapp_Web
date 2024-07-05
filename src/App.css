@@ -1,31 +1,36 @@
-.chat-back{
-  background-image: url('/back_whatsapp.png');
-  /* background-color: #384045; */
-  /* opacity: 0.5; */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+
+.chat-back {
+  background-image: url("/back_whatsapp.png");
+}
+
+.custom-background-skeloton {
+  @apply bg-gradient-to-r from-dark_accent to-dark_neutral animate-gradient-x;
+}
 
 /* custom scroll */
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: none;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #384045;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: none;
+}
 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #384045;
+}
 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
