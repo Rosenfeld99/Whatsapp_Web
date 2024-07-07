@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from '../firebase/firebase';
 import { AuthContext } from '../context/AuthContext';
-import { ChatContext } from '../context/ChatContext';
 import '../App.css';
+import useChats from '../hooks/useChats';
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
   const { currentUser } = useContext(AuthContext);
-  const { dispatch } = useContext(ChatContext);
+  const { dispatch, data } = useChats()
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -43,23 +43,28 @@ const Chats = () => {
           </div>
         ))
       ) : (
-        chats && Object?.entries(chats)?.sort((a, b) => b[1]?.date - a[1]?.date)?.map((chat) => (
-          <div
-            className="userChat flex items-center gap-5 p-3 text-dark_neutral_content border-b border-b-[#313b43] hover:bg-[#313b436e]"
-            key={chat && chat[0]}
-            onClick={() => handleSelect(chat[1]?.userInfo)}
-          >
-            <img
-              src={chat[1]?.userInfo?.photoURL}
-              className="w-12 aspect-square object-cover rounded-full bg-dark_accent"
-              alt=""
-            />
-            <div className="userChatInfo">
-              <span className="font-semibold text-lg">{chat[1]?.userInfo?.displayName}</span>
-              <p>{chat[1]?.lastMessage?.text}</p>
+        chats && Object?.entries(chats)?.sort((a, b) => b[1]?.date - a[1]?.date)?.map((chat) => {
+          console.log(chat);
+          return (
+
+            <div
+              className={` flex items-center gap-5 p-3 text-dark_neutral_content border-b border-b-[#313b43] hover:bg-[#313b436e] ${chat[0] == data?.chatId && "bg-[#323b42]"}`}
+              key={chat && chat[0]}
+              onClick={() => handleSelect(chat[1]?.userInfo)}
+            >
+              <img
+                src={chat[1]?.userInfo?.photoURL}
+                className="w-12 aspect-square object-cover rounded-full bg-dark_accent"
+                alt=""
+              />
+              <div className="userChatInfo">
+                <span className="font-semibold text-lg">{chat[1]?.userInfo?.displayName}</span>
+                <p>{chat[1]?.lastMessage?.text}</p>
+              </div>
             </div>
-          </div>
-        ))
+
+          )
+        })
       )}
     </div>
   );

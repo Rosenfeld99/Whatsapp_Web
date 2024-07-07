@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { img, attach } from '../assets'
 import { AuthContext } from '../context/AuthContext'
-import { ChatContext } from '../context/ChatContext'
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
 import { db, storage } from '../firebase/firebase'
 import { v4 as uuid } from 'uuid'
@@ -9,10 +7,11 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { LuImagePlus } from 'react-icons/lu'
 import { IoMdAttach } from 'react-icons/io'
 import { IoSendSharp } from 'react-icons/io5'
+import useChats from '../hooks/useChats'
 
 const Input = () => {
   const { currentUser } = useContext(AuthContext)
-  const { data } = useContext(ChatContext)
+  const { data } = useChats()
 
   const [text, setText] = useState("")
   const [image, setImage] = useState(null)
@@ -83,12 +82,10 @@ const Input = () => {
         <button>
           <IoMdAttach className='text-3xl text-dark_accent' />
         </button>
-        <button>
-          <input type="file" style={{ display: 'none' }} className='' id='file' onChange={(e) => setImage(e.target.files[0])} />
-          <label htmlFor="file">
-            <LuImagePlus className='text-3xl cursor-pointer text-dark_accent' />
-          </label>
-        </button>
+        <input type="file" style={{ display: 'none' }} className='' id='file' onChange={(e) => setImage(e.target.files[0])} />
+        <label htmlFor="file">
+          <LuImagePlus className='text-3xl cursor-pointer text-dark_accent' />
+        </label>
       </div>
       <input type="text" placeholder='Type somthing...' className='w-full p-3 rounded-md outline-none bg-[#313b43] text-dark_accent_content placeholder:text-dark_accent' value={text} onChange={(e) => setText(e.target.value)} />
       <button>

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Message } from '../components'
-import { ChatContext } from '../context/ChatContext'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../firebase/firebase'
 import { FaChevronDown } from 'react-icons/fa'
+import useChats from '../hooks/useChats'
 
-const Messages = () => {
-  const { data } = useContext(ChatContext)
+const Messages = ({ smallDevice }) => {
+  const { data } = useChats()
   const [messages, setMessages] = useState([])
 
   // console.log(data);
@@ -30,7 +30,7 @@ const Messages = () => {
     <div className=' h-full overflow-y-scroll relative'>
       {messages.map((m) => (
 
-        <Message message={m} key={m.id} />
+        <Message message={m} key={m.id} smallDevice={smallDevice} />
       ))}
       {/* <button
         onClick={scrollToBottom}
